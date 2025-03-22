@@ -1,0 +1,70 @@
+from abc import ABC, abstractmethod 
+class MetodosDePago(ABC):
+    def __init__(self, monto, metodo):
+        self.monto= monto
+        self.metodo= metodo
+    @abstractmethod
+    def procesar_pago(self):
+        pass
+    
+class Nequi(MetodosDePago):
+    def __init__(self, monto, numero, nombre):
+        super().__init__(monto, "Nequi")
+        self.nombre=nombre
+        self.numero=numero
+        
+    def procesar_pago(self):
+        return f"Monto: {self.monto}, Método de pago: {self.metodo}, Nombre: {self.nombre}, Numero de cuenta: {self.numero}"
+
+class Daviplata(MetodosDePago):
+    def __init__(self, monto, numero, nombre):
+        super().__init__(monto, "DaviPlata")
+        self.nombre=nombre
+        self.numero=numero 
+    def procesar_pago(self):
+        return f"Monto: {self.monto}, Método de pago: {self.metodo}, Nombre: {self.nombre}, Numero de cuenta: {self.numero}"
+
+class PSE(MetodosDePago):
+    def __init__(self, monto, numero, nombre):
+        super().__init__(monto, "PSE")
+        self.nombre=nombre
+        self.numero=numero
+    def procesar_pago(self):
+         return f"Monto: {self.monto}, Método de pago: {self.metodo}, Nombre: {self.nombre}, Numero de cuenta: {self.numero}" 
+   
+class TarjetaCredito(MetodosDePago):
+    def __init__(self, monto, numero, nombre):
+        super().__init__(monto, "Tarjeta de Credito")
+        self.nombre=nombre
+        self.numero=numero
+    def procesar_pago(self):
+        return f"Monto: {self.monto}, Método de pago: {self.metodo}, Nombre: {self.nombre}, Numero de cuenta: {self.numero}"    
+   
+class TarjetaDebito(MetodosDePago):
+    def __init__(self, monto, numero, nombre):
+        super().__init__(monto, "Tarjeta Debito")
+        self.nombre=nombre
+        self.numero=numero
+    def procesar_pago(self):
+        return f"Monto: {self.monto}, Método de pago: {self.metodo}, Nombre: {self.nombre}, Numero de cuenta: {self.numero}"
+        
+class Efectivo(MetodosDePago):
+    def __init__(self, monto, nombre):
+        super().__init__(monto, "Efectivo")
+        self.nombre=nombre
+    def procesar_pago(self):
+        return f"Monto: {self.monto}, Metodo de pago: {self.metodo}, Nombre: {self.nombre}"   
+ 
+nequi = Nequi("El cliente pagó x cantidad", "322222222222", "Miguel Perez")
+daviplata = Daviplata("El cliente pagó x cantidad", "79403904951", "Miguel Perez")
+pse = PSE("El cliente pagó x cantidad", "383495834", "Miguel Perez")
+tarjetadecredito = TarjetaCredito("El cliente pagó x cantidad", "1070549382", "Miguel Perez") 
+tarjetadebito = TarjetaDebito("El cliente pagó x cantidad", "7934029064", "Miguel Perez") 
+efectivo = Efectivo("El cliente pagó x cantidad", "Miguel Perez") 
+
+print(nequi.procesar_pago())
+print(daviplata.procesar_pago())
+print(pse.procesar_pago())
+print(tarjetadecredito.procesar_pago())
+print(tarjetadebito.procesar_pago())
+print(efectivo.procesar_pago())
